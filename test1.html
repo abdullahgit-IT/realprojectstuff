@@ -1,100 +1,67 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- =========================================================
+     6️⃣ PAGE HEAD (META + CSS)
+     ========================================================= -->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Demo Company</title>
-<link rel="stylesheet" href="styletest1.css">
+<title>Nova Health Solutions</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
+
+<!-- =========================================================
+     7️⃣ PAGE BODY (VISIBLE CONTENT)
+     ========================================================= -->
 <body>
 
 <!-- HEADER -->
 <header class="header">
-  <div class="logo">Demo Company</div>
-  <nav class="navbar">
-    <a href="#">Home</a>
-    <a href="#">Services</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-    <button class="btn-primary">Login</button>
-  </nav>
+  <div class="logo">Nova Health Solutions</div>
 </header>
 
-<!-- HERO BANNER -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>Welcome to Demo Company</h1>
-    <p>Professional solutions for modern businesses.</p>
-    <button class="btn-primary">Get Started</button>
-  </div>
-</section>
 
-<!-- INFO CARDS -->
-<section class="cards">
-  <div class="card">
-    <h3>Consulting</h3>
-    <p>Expert advice to grow your business.</p>
-  </div>
+<!-- =========================================================
+     8️⃣ MESSAGE DISPLAY
+     ========================================================= -->
+<?php if ($message): ?>
+  <p class="message"><?= htmlspecialchars($message) ?></p>
+<?php endif; ?>
 
-  <div class="card">
-    <h3>Development</h3>
-    <p>Modern web and software solutions.</p>
-  </div>
 
-  <div class="card">
-    <h3>Support</h3>
-    <p>We help you every step of the way.</p>
-  </div>
-</section>
-
-<!-- FORM -->
+<!-- =========================================================
+     9️⃣ REGISTER + LOGIN FORMS
+     ========================================================= -->
 <section class="form-section">
-  <h2>Contact Us</h2>
 
-  <form class="form">
-    <input type="text" placeholder="Full Name" required>
-    <input type="email" placeholder="Email Address" required>
+<div class="forms-container">
 
-    <select>
-      <option>Select Topic</option>
-      <option>Support</option>
-      <option>Sales</option>
-      <option>General</option>
-    </select>
+<div class="form-box">
+<h3>Register</h3>
+<form method="POST">
+<input name="name" placeholder="Full Name" required>
+<input name="email" type="email" placeholder="Email" required>
+<input name="password" type="password" placeholder="Password" required>
+<input name="confirm" type="password" placeholder="Confirm Password" required>
+<button name="register">Register</button>
+</form>
+</div>
 
-    <textarea placeholder="Message"></textarea>
-    <button class="btn-primary">Submit</button>
-  </form>
+
+<div class="form-box">
+<h3>Login</h3>
+<form method="POST">
+<input name="email" type="email" placeholder="Email" required>
+<input name="password" type="password" placeholder="Password" required>
+<button name="login">Login</button>
+</form>
+</div>
+
+</div>
 </section>
-
-<!-- TABLE -->
-<section class="table-section">
-  <h2>Example Data</h2>
-
-  <table class="table">
-    <tr>
-      <th>ID</th>
-      <th>Project</th>
-      <th>Status</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Website Build</td>
-      <td>Active</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Mobile App</td>
-      <td>Pending</td>
-    </tr>
-  </table>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <p>© 2026 Demo Company. All rights reserved.</p>
-</footer>
 
 </body>
 </html>
