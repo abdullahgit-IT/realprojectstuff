@@ -1,0 +1,115 @@
+
+
+/* ===== RESET ===== */
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+/* ===== PAGE LAYOUT ===== */
+html, body {
+  height:100%;
+}
+
+body {
+  display:flex;
+  flex-direction:column;
+  background:#0f0f0f;
+  color:#e5e5e5;
+}
+
+.page-wrapper {
+  flex:1;
+}
+
+/* ===== NAVBAR ===== */
+.header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  background:#000;
+  border-bottom:1px solid #333;
+}
+
+.logo {
+  font-size:20px;
+  font-weight:bold;
+  color:white;
+}
+
+.navbar a {
+  color:#ccc;
+  text-decoration:none;
+  margin:0 12px;
+  font-size:15px;
+}
+
+.navbar a:hover {
+  color:white;
+}
+
+.btn-outline {
+  border:1px solid #888;
+  padding:6px 12px;
+  border-radius:5px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background:#111;
+  text-align:center;
+  padding:90px 20px;
+  border-bottom:1px solid #333;
+}
+
+.hero h1 {
+  font-size:42px;
+  margin-bottom:10px;
+  color:white;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  padding:60px 20px;
+  text-align:center;
+  max-width:900px;
+  margin:auto;
+}
+
+.main-image {
+  width:320px;
+  margin-top:20px;
+  border-radius:10px;
+  border:1px solid #333;
+}
+
+/* ===== CARDS ===== */
+.cards {
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  padding:50px 20px;
+}
+
+.card {
+  background:#1a1a1a;
+  padding:25px;
+  width:260px;
+  border-radius:10px;
+  border:1px solid #333;
+  box-shadow:0 0 12px rgba(0,0,0,0.6);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background:#000;
+  color:#aaa;
+  text-align:center;
+  padding:20px;
+  border-top:1px solid #333;
+}
+
