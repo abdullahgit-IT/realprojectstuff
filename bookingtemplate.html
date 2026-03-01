@@ -1,0 +1,133 @@
+<!-- <?php
+session_start();
+
+/* ===== DATABASE CONNECTION ===== */
+$servername = "localhost";
+$username   = "abdullahcode";
+$password   = "Sheffield1!?";
+$dbname     = "riget zoo";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("DB connection failed");
+}
+
+$message = "";
+
+/* ===== HANDLE BOOKING ===== */
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["book_submit"])) {
+
+    $user_id = trim($_POST["user_id"] ?? "");
+    $email   = trim($_POST["email"] ?? "");
+    $service = trim($_POST["service"] ?? "");
+
+    if ($user_id === "" || $email === "" || $service === "") {
+        $message = "All fields are required.";
+    }
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $message = "Invalid email address.";
+    }
+    else {
+        $stmt = $conn->prepare("INSERT INTO bookings (user_id, email, service) VALUES (?, ?, ?)");
+        $stmt->bind_param("iss", $user_id, $email, $service);
+
+        if ($stmt->execute()) {
+            $message = "Booking successful!";
+        } else {
+            $message = "Booking failed.";
+        }
+    }
+}
+?>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Service</title>
+
+<link rel="stylesheet" href="template.css">
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+<header class="header">
+  <div class="logo">Nova Health Solutions</div>
+</header>
+
+<!-- HERO INFO -->
+<section class="hero">
+  <h1>Book a Professional Session</h1>
+  <p>Choose a service below and secure your appointment in seconds.</p>
+</section>
+
+<!-- SERVICE CARDS -->
+<section class="cards">
+
+  <div class="card">
+    <h3>Consultation</h3>
+    <p>Personal health advice tailored to your needs.</p>
+  </div>
+
+  <div class="card">
+    <h3>Fitness Session</h3>
+    <p>Guided workout sessions with expert trainers.</p>
+  </div>
+
+  <div class="card">
+    <h3>Mental Wellness</h3>
+    <p>Improve focus, balance and emotional wellbeing.</p>
+  </div>
+
+</section>
+
+<!-- INFO TEXT -->
+<section class="info">
+  <h2>Why Book With Us?</h2>
+  <p>
+    Our specialists provide professional, personalised support designed
+    to help you improve your health safely and effectively.
+    Booking takes less than a minute.
+  </p>
+</section>
+
+<!-- BOOKING FORM -->
+<section class="form-section">
+
+  <div class="form-box">
+    <h2>Book Appointment</h2>
+
+    <?php if ($message): ?>
+      <div class="message"><?= htmlspecialchars($message) ?></div>
+    <?php endif; ?>
+
+    <form method="POST">
+
+      <input type="number" name="user_id" placeholder="Your User ID" required>
+
+      <input type="email" name="email" placeholder="Your Email" required>
+
+      <select name="service" required>
+        <option value="">Select Service</option>
+        <option value="Consultation">Consultation</option>
+        <option value="Fitness Session">Fitness Session</option>
+        <option value="Mental Wellness Session">Mental Wellness Session</option>
+      </select>
+
+      <button type="submit" name="book_submit">Submit Booking</button>
+
+    </form>
+  </div>
+
+</section>
+
+<footer class="footer">
+  © 2026 Nova Health Solutions
+</footer>
+
+</div>
+</body>
+</html>
