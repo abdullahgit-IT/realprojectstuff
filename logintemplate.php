@@ -5,46 +5,47 @@ session_start();
    DATABASE CONNECTION
 ========================= */
 $servername = "localhost";
-$username   = "abdullahcode";
-$password   = "Sheffield1!?";
-$dbname     = "riget zoo";
+$dbusername = "abdullahcode";
+$dbpassword = "Sheffield1!?";
+$dbname     = "osc";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 if ($conn->connect_error) {
-    die("DB connection failed");
+    die("DB connection failed: " . $conn->connect_error);
 }
 
 $message = "";
 
 /* =========================
-   LOGIN PROCESSING (PUT HERE)
-   This runs BEFORE HTML loads
+   LOGIN PROCESSING
 ========================= */
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login_user"])) {
 
-    $username = trim($_POST["username"] ?? "");
     $email    = trim($_POST["email"] ?? "");
     $password = trim($_POST["password"] ?? "");
 
-    if ($username === "" || $email === "" || $password === "") {
+    if ($email === "" || $password === "") {
         $message = "All fields are required.";
     } else {
-
-        $stmt = $conn->prepare("SELECT id, password FROM usertable WHERE username = ? AND email = ?");
-        $stmt->bind_param("ss", $username, $email);
+        // Prepare query
+        $stmt = $conn->prepare("SELECT id, password, username FROM userosc WHERE email = ?");
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows === 1) {
-            $stmt->bind_result($user_id, $storedPassword);
+            $stmt->bind_result($user_id, $storedPassword, $username);
             $stmt->fetch();
 
-            /* ✅ REDIRECT AFTER SUCCESSFUL LOGIN */
-            if ($password === $storedPassword) {
+            // Verify hashed password
+            if (password_verify($password, $storedPassword)) {
 
-                $_SESSION['user_id'] = $user_id;
+                // Set session
+                $_SESSION['id'] = $user_id;
+                $_SESSION['username'] = $username;
 
-                header("Location: template.php"); // ← CHANGE THIS PAGE
+                // Redirect to dashboard
+                header("Location: template.php");
                 exit;
 
             } else {
@@ -52,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login_user"])) {
             }
 
         } else {
-            $message = "No matching user found.";
+            $message = "No account found with this email.";
         }
 
         $stmt->close();
@@ -61,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login_user"])) {
 
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,7 +78,7 @@ $conn->close();
 
   <!-- HEADER -->
   <header class="header">
-    <div class="logo">Your Company</div>
+    <div class="logo">Nova Health Solutions</div>
   </header>
 
   <!-- LOGIN SECTION -->
@@ -89,18 +91,19 @@ $conn->close();
 
       <form method="POST">
 
-        <label>Username</label>
-        <input type="text" name="username" required>
-
         <label>Email</label>
-        <input type="email" name="email" required>
+        <input type="email" name="email" placeholder="Enter your email" required>
 
         <label>Password</label>
-        <input type="password" name="password" required>
+        <input type="password" name="password" placeholder="Enter your password" required>
 
         <button type="submit" name="login_user">Login</button>
 
       </form>
+
+      <p style="text-align:center; margin-top:10px;">
+        <a href="forgotpasswordtemplate.php">Forgot Password?</a>
+      </p>
 
       <p style="text-align:center; margin-top:15px;">
         Don't have an account?
@@ -113,7 +116,7 @@ $conn->close();
 
   <!-- FOOTER -->
   <footer class="footer">
-    © 2025 Your Company. All rights reserved.
+    © 2026 Nova Health Solutions. All rights reserved.
   </footer>
 
 </div>

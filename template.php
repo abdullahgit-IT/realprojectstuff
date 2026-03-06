@@ -22,17 +22,17 @@ session_start();
   <nav class="navbar">
     <a href="home.php">Home</a>
     <a href="about.php">About</a>
-    <a href="services.php">Services</a>
+    <a href="bookingtemplate.php">Services</a>
     <a href="contact.php">Contact</a>
 
-    <?php if (!empty($_SESSION["user_id"])): ?>
-        <a href="dashboard.php">Dashboard</a>
-        <a href="logintemplate.php" class="btn-outline">Logout</a>
-    <?php else: ?>
-        <a href="logintemplate.php" class="btn-outline">Login</a>
+    <div class="nav">
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <a href="logout.php">Logout</a>
     <?php endif; ?>
+</div>
   </nav>
 </header>
+    
 
 <!-- ===== HERO SECTION ===== -->
 <section class="hero">

@@ -1,92 +1,165 @@
-* {
+/* RESET */
+
+*{
   margin:0;
   padding:0;
   box-sizing:border-box;
   font-family:Arial, sans-serif;
 }
 
-body {
+/* BODY */
+
+body{
   background:#111;
   color:#eee;
+  line-height:1.6;
 }
 
-.page-wrapper {
+/* PAGE STRUCTURE */
+
+.page-wrapper{
   min-height:100vh;
   display:flex;
   flex-direction:column;
 }
 
-/* HEADER */
-.header {
+/* HEADER / NAVBAR */
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 40px;
   background:#000;
-  color:#fff;
-  padding:18px 30px;
+  border-bottom:1px solid #333;
+}
+
+/* LOGO */
+
+.logo{
   font-size:20px;
   font-weight:bold;
 }
 
-/* HERO */
-.hero {
+/* NAVBAR LINKS */
+
+.navbar{
+  display:flex;
+  gap:25px;
+  align-items:center;
+}
+
+.navbar a{
+  text-decoration:none;
+  color:#eee;
+  font-size:15px;
+  transition:0.2s;
+}
+
+.navbar a:hover{
+  color:#aaa;
+}
+
+/* LOGIN BUTTON */
+
+.btn-outline{
+  border:1px solid #555;
+  padding:6px 14px;
+  border-radius:4px;
+}
+
+.btn-outline:hover{
+  background:#444;
+}
+
+/* HERO SECTION */
+
+.hero{
   text-align:center;
   padding:60px 20px;
   background:#1a1a1a;
 }
 
-.hero h1 {
+.hero h1{
   margin-bottom:10px;
+  font-size:32px;
 }
 
-/* CARDS */
-.cards {
+/* CARDS SECTION */
+
+.cards{
   display:flex;
   justify-content:center;
-  gap:20px;
-  padding:40px 20px;
+  gap:25px;
+  padding:50px 20px;
   flex-wrap:wrap;
 }
 
-.card {
+.card{
   background:#1c1c1c;
   padding:25px;
   width:260px;
   border-radius:8px;
   text-align:center;
   box-shadow:0 0 10px rgba(0,0,0,0.4);
+  transition:0.2s;
 }
 
-/* INFO */
-.info {
+.card:hover{
+  transform:translateY(-5px);
+}
+
+/* INFO SECTION */
+
+.info{
   text-align:center;
-  padding:40px 20px;
+  padding:50px 20px;
   background:#181818;
 }
 
-/* FORM */
-.form-section {
+.info h2{
+  margin-bottom:10px;
+}
+
+/* FORM SECTION */
+
+.form-section{
   flex:1;
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:40px 20px;
+  padding:50px 20px;
 }
 
-.form-box {
+/* FORM BOX */
+
+.form-box{
   background:#1c1c1c;
   padding:30px;
   width:350px;
   border-radius:8px;
+  box-shadow:0 0 10px rgba(0,0,0,0.4);
 }
 
+.form-box h2{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+/* INPUTS */
+
 .form-box input,
-.form-box select {
+.form-box select{
   width:100%;
   padding:10px;
-  margin-bottom:12px;
+  margin-bottom:14px;
   border:none;
   border-radius:4px;
 }
 
-.form-box button {
+/* BUTTON */
+
+.form-box button{
   width:100%;
   padding:10px;
   background:#444;
@@ -94,21 +167,26 @@ body {
   border:none;
   border-radius:4px;
   cursor:pointer;
+  transition:0.2s;
 }
 
-.form-box button:hover {
+.form-box button:hover{
   background:#666;
 }
 
-.message {
+/* MESSAGE */
+
+.message{
   text-align:center;
   margin-bottom:10px;
 }
 
 /* FOOTER */
-.footer {
+
+.footer{
   background:#000;
   color:#aaa;
   text-align:center;
-  padding:14px;
+  padding:16px;
+  margin-top:auto;
 }
